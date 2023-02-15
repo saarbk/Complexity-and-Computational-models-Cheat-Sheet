@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: Complexity Classes</title>
+<link rel="next" href="sect0009.html" title="Theorems on Complexity of Turing Machines" />
+<link rel="prev" href="sect0007.html" title="Classical Results" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000009">6 Complexity Classes</h1>
+<div class="displaymath" id="a0000000052">
+  \begin{equation*} \begin{aligned} \begin{matrix}  \P = \bigcup _{k\geq 1} \mathrm{TIME}(n^k) 
+
+& \quad 
+
+&  \mathcal{NP}= \bigcup _{k\geq 1} \mathrm{NTIME}(n^k) 
+
+\\ \mathrm{PSPACE}= \bigcup _{k\geq 1} \mathrm{SPACE}(n^k) 
+
+& \quad 
+
+&  \mathrm{NPSPACE}= \bigcup _{k\geq 1} \mathrm{NSPACE}(n^k) 
+
+\end{matrix}\\ \begin{matrix}  \mathrm{EXP}= \bigcup _{k\geq 1} \mathrm{TIME}(2^{n^k}) 
+
+&  \mathrm{LOGSPACE}= \bigcup _{k\geq 1} \mathrm{SPACE}(k \times \log (n)) 
+
+\end{matrix}\end{aligned}\end{equation*}
+</div>
+<h2 id="a0000000053">6.1 Hierarchy</h2>
+<div class="displaymath" id="a0000000054">
+  \[  \mathrm{LOGSPACE}\subseteq \P \subseteq \mathcal{NP}\subseteq \mathrm{PSPACE}= \mathrm{NPSPACE}\subset \mathrm{EXP}\subset R \subset RE  \]
+</div>
+<p>Since \(\mathrm{LOGSPACE}\subsetneq \mathrm{PSPACE}\), at least one of those inclusions is strict: </p>
+<div class="displaymath" id="a0000000055">
+  \[  \mathrm{LOGSPACE}\subseteq \P , \P \subseteq \mathcal{NP}, \mathcal{NP}\subseteq \mathrm{PSPACE} \]
+</div>
+<p>It is not yet know which one of those is a strict inclusion. <br /> </p>
+<p><b class="bfseries">Theorem. </b> \(\mathrm{LOGSPACE}\subseteq \P \). <i class="itshape">Proof.</i> Let \(I \in \mathrm{LOGSPACE}\). There \(\exists \) a TM that computes \(x \in I\) in \(\O (\log \abs {x})\) space. \(M\) can range through \(\O (\abs {x} \log \abs {x} \# Q \# \Sigma ^{\log \abs {x}})\) configurations. A halting computation cannot cycle on configurations. So M computes in \(\O (\abs {x}^k)\) for some \(k\). <br /> </p>
+<p><b class="bfseries">Theorem. (Savitch)</b> \(\mathrm{NPSPACE}= \mathrm{PSPACE}\). <br /> </p>
+<p><b class="bfseries">Theorem. Hierarchy of time and space</b>. If \(f\) is appropriate, then \(\mathrm{TIME}(f(n)) \subsetneq \mathrm{TIME}((f(2n+1))^3)\), and \(\mathrm{SPACE}(f(n)) \subsetneq \mathrm{SPACE}(f(n) \times \log f(n))\). <b class="bfseries">Corollary. </b> \(\P \subsetneq \mathrm{EXP}\)<br /><i class="itshape">Proof.</i> \(\P \subset \mathrm{EXP}\) is obvious because \(2^n\) grows faster than any polynomial. It is strict because \(\P \subseteq \mathrm{TIME}(2^n) \subsetneq \mathrm{TIME}((2^{(2n+1)})^3) \subseteq \mathrm{TIME}(2^{n^2}) \). This corollary, together with the fact that \(\mathrm{NTIME}(f(n)) \subseteq \mathrm{TIME}(c^{f(n)})\) lets us conclude that \(\mathcal{NP}\subseteq \mathrm{EXP}\). <br /> </p>
+<p><b class="bfseries">Theorem. Hierarchy 2</b>. Let \(f\) be an appropriate measuring function, and \(k\) a constant. Then </p>
+<table class="tabular">
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(\mathrm{SPACE}(f(n)) \subseteq \mathrm{NSPACE}(f(n))\) </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(\mathrm{TIME}(f(n)) \subseteq \mathrm{NTIME}(f(n))\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>\(\mathrm{NSPACE}(f(n)) \subseteq \mathrm{TIME}(k^{\log n + f(n)})\) </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">&nbsp;</td>
+  </tr>
+</table>
+<p> <br /></p>
+<h3 id="a0000000056"> Resulting regular expres­sion:</h3>
+<div class="displaymath" id="a0000000057">
+  \[ L_2 = \{ y : \exists x,z\  \  s.t.|x|=|z|\  and\  xyz \in L \}  \]
+</div>
+<p>(Example) is regular.onsider some DFA for \(L\). For every \(n \geq 0\), let \(A_n\) be the set of states \(s\) such that there is *some* word of length \(n\) which leads the DFA from the initial state to \(s\). Let \(B_n\) be the set of states \(t\) such that there is *some* word of length \(n\) which leads the DFA from \(t\) to an accepting state. Finally, for any two states \(s,t\), let \(R_{s,t}\) be the (regular) set of words leading the DFA from \(s\) to \(t\). We have </p>
+<div class="displaymath" id="a0000000058">
+  \[  L_2 = \bigcup _{n \geq 0} \bigcup _{\substack {s \in A_n \\ t \in B_n}} R_{s,t}.  \]
+</div>
+<p> Since there are only finitely many possibilities for \(s,t\), the union is in fact finite, and so regular </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0007.html" title="Classical Results"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0009.html" title="Theorems on Complexity of Turing Machines"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

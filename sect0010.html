@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: Space complexity</title>
+<link rel="next" href="sect0011.html" title="Randomized" />
+<link rel="prev" href="sect0009.html" title="Theorems on Complexity of Turing Machines" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000011">Space complexity</h1>
+<div class="displaymath" id="a0000000066">
+  \[  \begin{aligned} \begin{matrix}  L=DSPACE(\log (n)) 
+
+& \quad 
+
+&  NL = NSPACE(\log (n)) 
+
+\\ \mathrm{PSPACE}= \bigcup _{k\geq 1} \mathrm{SPACE}(n^k) 
+
+& \quad 
+
+&  co-NL=NL\qquad DTIME(t(n))\subseteq DSPACE(t(n)) 
+
+\end{matrix}\\ \end{aligned} \]
+</div>
+<div class="centered"><p><b class="bfseries">STCON,PATH is NL-complete under log reductions.</b> </p>
+</div>
+<p> <b class="bfseries">NL clousre</b> If the language \(A\) is \(NL\)-complete then </p>
+<p>1. \(A \in NL\) 2. Each problem in \(NL\) is logspace reducible to \(A\) </p>
+<p>Since \(coNL = NL\) each problem in \(coNL\) is logspace reducible to \(A\) as well. Thus \(A\) is \(coNL\)-complete. <br /></p>
+<p><b class="bfseries">Any \(L\in \mathcal{NP}\) have Log Verifier </b> for \(L\) is D-TM with 3 types \((w,c\),working type) \(V\) run in <b class="bfseries">Poly</b> time \(|x|\) and using \(\log (|x|)\) types from working type. if \(x\in L\) exsit \(w\) s.t \(V \) accept . if \(x\notin L\) for all \(w\) \(V\) reject. \(L\in NL \Leftrightarrow \) exsit Right only log time verifier.</p>
+<h3 id="a0000000067">Composition of space-bounded functions</h3>
+<p> is a bit tricky: Thm: if \(f\) and \(g\) are computable in space \(s_f(n).g_f(n).\) respectively, then \(g f\) is computable in space (with \(m_f\) being a bound on the output length of \(f\)). </p>
+<div class="displaymath" id="a0000000068">
+  \[ s_f(n)+\log (m_f(n))+\log (m_f(n))  \]
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0009.html" title="Theorems on Complexity of Turing Machines"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0011.html" title="Randomized"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

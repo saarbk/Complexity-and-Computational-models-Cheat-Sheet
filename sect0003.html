@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: Turing Machines</title>
+<link rel="next" href="sect0004.html" title="Reductions" />
+<link rel="prev" href="sect0002.html" title="Turing Machine" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000004">3 Turing Machines</h1>
+<p> <b class="bfseries">Deterministic</b> TMs are seen in the <i class="itshape">Computability Theory Cheat Sheet</i>. </p>
+<h2 id="a0000000033">3.1 K-tapes Turing Machines</h2>
+<p> Let \(k \geq 1\) be the number of tapes. A k-tape TM is a quadruple \((Q, \Sigma , \delta , q_0)\). Special symbols \(\# , \triangleright , \in \Sigma \), while \(L,R,- \notin \Sigma \). Since we are only considering decision problems, \(\mathrm{YES},\mathrm{NO}\notin Q\) are the halting states. The transition function differs but is subject to the same restrictions as a classical TM. </p>
+<div class="displaymath" id="a0000000034">
+  \[ \delta : Q \times \Sigma ^k \to Q \cup \{ \mathrm{YES}, \mathrm{NO}\}  \times (\Sigma \times \{ L, R, -\} )^k  \]
+</div>
+<h2 id="a0000000035">3.2 IO Turing Machines</h2>
+<p> Are useful to study space complexity. Any k-tape TM \(M = (Q, \Sigma , \delta , q_0)\) is of IO type \(\Leftrightarrow \delta \) is subject to the following constraints. Consider \(\delta (q_1, \sigma _1, \hdots , \sigma _k) = (q', (\sigma _1', D_1), \hdots , (\sigma _k', D_k))\) </p>
+<table class="tabular">
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(\sigma _1' = \sigma _1\) </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> First tape is read-only </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>\(D_k = R\) or \((D_k = -) \Rightarrow \sigma '_k = \sigma _k\) </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> Last tape is write-only </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>\(\sigma _1 = \#  \Rightarrow D_1 \in \{ L, -\} \) </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> Input tape is right-bounded </p>
+
+    </td>
+  </tr>
+</table>
+<h2 id="a0000000036">3.3 Nondeterministic Turing Machines</h2>
+<p> A <b class="bfseries">nondeterministic</b> TM is a quadruple \(N = (Q, \Sigma , \Delta , q_0)\) where \(Q, \Sigma , q_0\) are the same as in other turing machines. They can be of IO and k-tape type. The difference rilies in the fact that </p>
+<div class="displaymath" id="a0000000037">
+  \[  \Delta \subseteq (Q \times \Sigma ) \times ((Q \cup \{ \mathrm{YES}, \mathrm{NO}\} ) \times \Sigma \times \{ L,R, -\} )  \]
+</div>
+<p>Is not a transition function but a <b class="bfseries">transition relation</b>. The same syntax as for other TMs is used for nondet. TMs configurations and computations. A nondeterministic TM \(N\) decides \(I\) if and only if \(x \in I \Leftrightarrow \) there exists <b class="bfseries">at least</b> a computation such that \((q_0, \underline{\triangleright }, x, \triangleright , \hdots , \triangleright ) \to ^*_N (\mathrm{YES}, w_1, \hdots , w_k)\) </p>
+<p><div class="note_thmwrapper theorem-style-remark" id="a0000000038">
+  <div class="note_thmheading">
+    <span class="note_thmcaption">
+    Note
+    </span>
+  </div>
+  <div class="note_thmcontent">
+  <p>A single computation on a nondeterministic TMs is not a tree. Many computations together, can be arranged in a tree. </p>
+
+  </div>
+</div> </p>
+<p>The <b class="bfseries">degree</b> \(d\) of nondeterminism of a NDTM \(N = (Q, \Sigma , \Delta , q_0)\) can now be defined as \(d = \max \{  \deg {(q,\sigma )} \mid q \in Q, \sigma \in \Sigma \} \), where \(\text{deg}(q, \sigma ) = \# \{ (q', \sigma ', D) \mid ((q, \sigma ), (q', \sigma ', D)) \in \Delta \} \) </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0002.html" title="Turing Machine"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0004.html" title="Reductions"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

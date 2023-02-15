@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>:  change probability in definition of PP </title>
+<link rel="next" href="sect0014.html" title="CircuitSat  DTIME(2n) consequences" />
+<link rel="prev" href="sect0012.html" title="PP=RP consequences" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000014"> change probability in definition of PP </h1>
+<p> Lets say a separation using \(p\in \mathbb {Q}\) exists for \(L\subseteq \Sigma ^*\) if there exists a polynomial probabilistic Turing machine \(M\) such that: </p>
+<p>\(x\in L \Rightarrow \Pr \left[\text{M accepts x}\right]{\gt} p \qquad \) \(x\notin L \Rightarrow \Pr \left[\text{M accepts x}\right]{\lt} p\) </p>
+<p>\(L\in PP\) iff there exists a separation for \(L\) using \(\frac{1}{2}\) (we can use a strong inequality in both cases). We proceed to show that \(\forall p,q\in (0,1)\cap \mathbb {Q}\), if there exists a separation for \(L\) using \(p\), then there exists a separation using \(q\). Now, given a machine \(M_p\) with separation \(p\) for \(L\), lets consider a machine \(M_q\), which starts by tossing an \(\alpha \)-biased coin. If the outcome is \(1\) then it accepts, otherwise it simulates \(M_p\) on the input and returns it’s answer. </p>
+<p>Since we want \(M_q\) to be polynomial in the worst case, we restrict the simulation of the \(\alpha \)-biased coin to a certain number of iterations, such that the simulation halts with probability \(1-\epsilon \) (this can be done for any \(\epsilon {\gt}0\), simply use the fact that the simulation runs in expected constant time, and apply Markov’s inequality). If the simulation didn’t halt, \(M_q\) accepts. In this case we have: </p>
+<p>\(\Pr \left[\)\(\)M_q\( accepts x\)=ε+(1-ε)α+(1-α)\(\)M_p\( accepts x\)\(\), so: </p>
+<p>\(x\in L \Rightarrow \Pr \left[\)\(\)M_q\( accepts x\)&gt; ε+(1-ε)α+(1-α)p \(\) </p>
+<p>\(x\notin L \Rightarrow \Pr \left[\)\(\)M_q\( accepts x\)&lt; ε+(1-ε)α+(1-α)p \(\) This means it is enough to require \(q=\epsilon +(1-\epsilon )\left(\alpha +(1-\alpha )p\right)\). Equivalently, \(\alpha =\frac{q-p-\epsilon (1-p)}{1-\epsilon }\). </p>
+<p>Since \(p,q\in (0,1)\cap \mathbb {Q}\), if \(q{\gt}p\) we can find a small rational \(\epsilon \) and rational \(\alpha \in (0,1)\) to satisfy this. If \(p{\gt}q\) you can change \(M_q\) to reject when the outcome of the \(\alpha \)-biased coin is 1. When this equality holds, \(M_q\) achieves \(q\) separation for \(L\) and we are done. </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0012.html" title="\(\textbf{PP=RP}\) consequences"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0014.html" title="CircuitSat \(\in \) DTIME\((2^n)\) consequences"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

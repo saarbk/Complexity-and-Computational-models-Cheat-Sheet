@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: Theorems on Complexity of Turing Machines</title>
+<link rel="next" href="sect0010.html" title="Space complexity" />
+<link rel="prev" href="sect0008.html" title="Complexity Classes" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000010">7 Theorems on Complexity of Turing Machines</h1>
+<p><div class="thm_thmwrapper theorem-style-plain" id="a0000000059">
+  <div class="thm_thmheading">
+    <span class="thm_thmcaption">
+    Theorem
+    </span>
+  </div>
+  <div class="thm_thmcontent">
+  <p><b class="bfseries">Reduction of tapes</b> Let \(M\) be a \(k\)-tape TM, deciding \(I\) in deterministic time \(f\), then \(\exists \) a 1 tape TM \(M'\) that decides \(I\) in time \(\O (f^2)\) </p>
+<div class="proof_wrapper" id="a0000000060">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>(Only a draft): Build a 1 tape TM \(M'\) by introducing two symbols \(\triangleright '\) and \(\triangleleft '\) to denote the start and end of the \(k\)-th tape. Introduce \(\# \Sigma \) new symbols \(\overline{\sigma _i}\) to remember each tape’s head location. To generate the initial configuration \((q, \triangleright \triangleright ' x \triangleleft ' (\triangleright ' \triangleleft ' )^k )\), \(2k + \# \Sigma \) states and \(\O (\abs {k})\) steps are needed. To simulate a move of \(M\), \(M'\) iterates the input datum from left to right, and back, 2 times: find the marked \(\overline{\sigma _i}\) symbols, the second time write the new symbols. If a tape has to be extended, the \(\triangleleft '\) parens have to be moved and a cascade happens. This takes \(\O (f(\abs {x}))\) time, for each move of \(M\). Since \(M\) takes \(\O (f(\abs {x}))\) time to compute an answer, \(M'\) will take \(\O (f(\abs {x})^2)\) </p>
+
+  </div>
+</div>
+
+  </div>
+</div> </p>
+<p><div class="cor_thmwrapper theorem-style-plain" id="a0000000061">
+  <div class="cor_thmheading">
+    <span class="cor_thmcaption">
+    Corollary
+    </span>
+  </div>
+  <div class="cor_thmcontent">
+  <p>Parallel machines are polinomially faster than sequential machines. </p>
+
+  </div>
+</div> <span class="fbox" style="width: None"> <span class="parbox" style="width: 0.0pt"></span></span> <br /> </p>
+<p><b class="bfseries">Theorem. Linear speedup</b> If \(I \in \mathrm{TIME}(f)\), then \(\forall \epsilon \in \mathbb {R}^+ . \  I \in \mathrm{TIME}(\epsilon \times f(n) + n + 2)\). <i class="itshape">Proof.</i> (Draft): Build \(M'\) from \(M\) solving \(I\), compacting \(m\) symbols of \(M\) into 1 of \(M'\), in function of \(\epsilon \). The states of \(M'\) will be triples \([q,\sigma _{i_1},\hdots ,\sigma _{i_m},k]\) meaning the TM is in state \(q\) and has cursor on \(k\)-th symbol of \(\sigma _{i_1},\hdots ,\sigma _{i_m}\). \(M'\) then needs 6 steps to simulate \(m\) steps of \(M\). Therefore, \(M'\) will take \(\abs {x} + 2 + 6 \times \lceil \frac{f(\abs {x})}{m}\rceil \). Then \(m = \lceil \frac{6}{\epsilon } \rceil \). <span class="qed">□</span><br /> </p>
+<p>Same principle can apply to \(\mathrm{SPACE}\) with <b class="bfseries">linear space compression</b>. If \(I \in \mathrm{SPACE}(f(n))\), then \(\forall \epsilon \in \mathbb {R}^+ . \  I \in \mathrm{SPACE}(\epsilon \times f(n) + 2)\) </p>
+<p><div class="thm_thmwrapper theorem-style-plain" id="a0000000062">
+  <div class="thm_thmheading">
+    <span class="thm_thmcaption">
+    Theorem
+    </span>
+  </div>
+  <div class="thm_thmcontent">
+  <p>For each k-tape TM \(M\) that decides I in deterministic time \(f\) there exists an IO TM \(M'\) with k+2 tapes that computes I in time \(c \times f\) for some constant \(c\). </p>
+<div class="proof_wrapper" id="a0000000063">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>\(M'\) copies the first \(M\) tape to the second tape, in \(\abs {x} + 1\) steps. Then, \(M'\) operates identically to \(M\). If and when \(M\) halts, \(M'\) copies the result to the tape \(k+2\), in at most \(f(\abs {x})\) steps. \(M'\) computation was \(2f(\abs {x}) + \abs {x} + 1\) steps long. </p>
+
+  </div>
+</div>
+
+  </div>
+</div> <div class="thm_thmwrapper theorem-style-plain" id="a0000000064">
+  <div class="thm_thmheading">
+    <span class="thm_thmcaption">
+    Theorem
+    </span>
+  </div>
+  <div class="thm_thmcontent">
+  <p><b class="bfseries">Exponential loss in determinization, or bruteforce</b> If \(I \in NTIME(f(n))\) and is computed by \(k\)-tape \(N\), it can also be computed by a deterministic TM \(M\) with \(k+1\) tapes in time \(\O (c^{f(n)})\) with an exponential loss of performance. In short, \(\mathrm{NTIME}(f(n)) \subseteq \mathrm{TIME}(c^{f(n)})\) </p>
+<div class="proof_wrapper" id="a0000000065">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>Let \(d\) be the degree of nondeterminism of \(N\). \(\forall q \in Q, \sigma \in \Sigma \) sort \(\Delta (q,\sigma )\) lexicographically. Every computation of length \(t\) carried by \(N\) is a sequence of choices that can be seen as a sequence of natural numbers \((c_1, \hdots , c_t)\) with \(c_i \in [0..d-1]\). The det. TM \(M\) considers these successions in an increasing order, visiting the tree of nondeterministic computations, one at a time. Therefore \(M(x)\downarrow \  \Leftrightarrow N(x)\downarrow \), also, all the possible simulations can be \(\O (d^{f(n) + 1})\). </p>
+
+  </div>
+</div>
+
+  </div>
+</div> </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0008.html" title="Complexity Classes"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0010.html" title="Space complexity"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

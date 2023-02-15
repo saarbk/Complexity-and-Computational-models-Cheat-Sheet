@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: Reductions</title>
+<link rel="next" href="sect0005.html" title="Boolean Circuit" />
+<link rel="prev" href="sect0003.html" title="Turing Machines" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000005">4 Reductions</h1>
+<p>A (decision) problem (a set) \(A\) reduces to \(B\) with <i class="itshape">reduction</i> \(f\), in symbols \(A \leqslant _{f} B\) when \(a \in A \Leftrightarrow f(a) \in B\). We also have that \(A \leqslant _{f} B \Leftrightarrow \overline{A} \leqslant _{f} \overline{B}\) because \(x \in \overline{A} \Leftrightarrow x \notin A \Leftrightarrow f(x) \notin B \Leftrightarrow f(x) \in \overline{B}\). </p>
+<h2 id="a0000000039">4.1 Reduction Relations</h2>
+<p>A relation of reductions (\(\leqslant _{F}\)) can be defined on a class of functions \(F\) as follows, note that \(\leqslant _{F}\) is also a partial pre-order. </p>
+<div class="displaymath" id="a0000000040">
+  \[ A \leqslant _{F} B \Leftrightarrow \exists f \in F . \  A \leqslant _{f} B  \]
+</div>
+<h2 id="a0000000041">4.2 Properties</h2>
+<p> Let \(\mathcal{D}\) and \(\mathcal{E}\) two classes of problems such that \(\mathcal{D}\subseteq \mathcal{E}\), and \(\mathcal{D}\subseteq \). A reduction relation̋_F\(\) classifies \(\mathcal{D}\) and \(\mathcal{E}\Leftrightarrow \forall A,B,C\) (problems): </p>
+<table class="tabular">
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> 1: Reflexivity </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(A \leqslant _{F} A\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>2: Transitivity </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(A \leqslant _{F} B, B \leqslant _{F} C \Rightarrow A \leqslant _{F} C\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>3: \(\mathcal{D}\) closed by reduction </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(A \leqslant _{F} B, B \in \mathcal{D}\Rightarrow A \in \mathcal{D}\)</p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>4: \(\mathcal{E}\) closed by reduction </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(A \leqslant _{F} B, B \in \mathcal{E}\Rightarrow A \in \mathcal{E}\) </p>
+
+    </td>
+  </tr>
+</table>
+<p>Equivalently: </p>
+<table class="tabular">
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> 1: Identity </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(\text{id} \in F\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>2: Closed by composition </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(f,g \in F \Rightarrow f \circ g \in F\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>3: </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(f \in F, B \in \mathcal{D}\Rightarrow \{ x \mid f(x) \in B \}  \in \mathcal{D}\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p>4: </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(f \in F, B \in \mathcal{E}\Rightarrow \{ x \mid f(x) \in B \}  \in \mathcal{E}\)</p>
+
+    </td>
+  </tr>
+</table>
+<h2 id="a0000000042">4.3 Hard and Complete Problems</h2>
+<p> If \(\leqslant _{F}\) classifies \(\mathcal{D}\) and \(\mathcal{E}\), then \(\forall \) problems \(A,B,H\). </p>
+<table class="tabular">
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> <code class="verbatim">-</code> </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(A \leqslant _{F} B \wedge B \leqslant _{F} A \Rightarrow A \equiv B\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p><code class="verbatim">-</code> </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(H\) is \(\leqslant _{F}\)-hard for \(\mathcal{E}\) if \(\forall A \in \mathcal{E}. \  A \leqslant _{F} H\) </p>
+
+    </td>
+  </tr>
+  <tr>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p><code class="verbatim">-</code> </p>
+
+    </td>
+    <td  style="None" 
+        rowspan=""
+        colspan="">
+      <p> \(H\) is \(\leqslant _{F}\)-complete for \(\mathcal{E}\) if \(\forall A \in \mathcal{E}. \  A \leqslant _{F} H \wedge H \in \mathcal{E}\) </p>
+
+    </td>
+  </tr>
+</table>
+<p><div class="thm_thmwrapper theorem-style-plain" id="a0000000043">
+  <div class="thm_thmheading">
+    <span class="thm_thmcaption">
+    Theorem
+    </span>
+  </div>
+  <div class="thm_thmcontent">
+  <p>If \(\leqslant _{F}\) classifies \(\mathcal{D}\) and \(\mathcal{E}\), \(\mathcal{D}\subseteq \mathcal{E}\) and \(C\) is complete for \(\mathcal{E}\) then \(C \in \mathcal{D}\Leftrightarrow \mathcal{D}= \mathcal{E}\) </p>
+<div class="proof_wrapper" id="a0000000044">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>\((\Leftarrow )\) is obvious. \((\Rightarrow )\): Let \(C \in D\) and \(A \in \mathcal{E}\). By completeness, \(A \leqslant _{F} C\) and \(A \in \mathcal{D}\), then \(\mathcal{E}\subseteq \mathcal{D}\) which implies \(\mathcal{E}= \mathcal{D}\) </p>
+
+  </div>
+</div>
+
+  </div>
+</div> </p>
+<p><div class="thm_thmwrapper theorem-style-plain" id="a0000000045">
+  <div class="thm_thmheading">
+    <span class="thm_thmcaption">
+    Theorem
+    </span>
+  </div>
+  <div class="thm_thmcontent">
+  <p><b class="bfseries">Completeness is "transitive" for reductions</b>: If \(A\) is complete for \(\mathcal{E}\), \(A \leqslant _{F} B\) and \(B \in \mathcal{E}\) then \(B\) is complete for \(\mathcal{E}\). </p>
+
+  </div>
+</div> </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0003.html" title="Turing Machines"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0005.html" title="Boolean Circuit"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

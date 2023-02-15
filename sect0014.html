@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: CircuitSat \(\in \) DTIME\((2^n)\) consequences</title>
+<link rel="next" href="sect0015.html" title="Prove/ Disprove" />
+<link rel="prev" href="sect0013.html" title=" change probability in definition of PP " />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000015">CircuitSat \(\in \) DTIME\((2^n)\) consequences</h1>
+<p> \(\mathsf{CircuitSat\in DTIME(2^n)}\) does not imply \(\mathsf{NP\subseteq DTIME(2^n)}\) since the reduction might increase the input’s size. Suppose for example that \(L\in NP\) and the reduction from \(L\) to \(\mathsf{CircuitSat}\) maps strings of length \(n\) to strings of length \(n^c\) (for all \(n\in \mathbb {N}\)), then applying the reduction and using a naive exponential time algorithm for circuit sat yields a \(2^{n^c}\) time algorithm for \(L\). </p>
+<p>If however you can place an NP-complete problem in a subexponential time class, e.g. \(n^{\log n}\), then \(NP\neq EXP\), since \(n^{O(\log n)}\) is closed under polynomial transformations, i.e. \(n\mapsto n^c\). </p>
+<h2 id="a0000000078">P/poly \(= \cup _{c\in \mathbb {N}} \)SIZE\((n^c)\) consequences</h2>
+<p> If NEXPTIME \(\subset P/poly\) then NEXPTIME = EXPTIME. <b class="bfseries">Proof that \(BPP \subseteq P/Poly\) </b> Let L be a language in BPP, and let \(M(x,r)\) be a polynomial-time algorithm that decides \(L\) with error\(\le 1/3\)(where x is the input string and r is a set of random bits). </p>
+<p>Construct a new machine \(M'(x,r)\), which runs\(M, 48n\) times and takes a majority vote of the results (where \(n\) is the input length and R is a sequence of \(48n\) independently random \(r's\)). Thus,\(M'\) is also polynomial-time, and has an error probability \(\le 1/e\)by the (chernof). If we can fix \(R\) then we obtain an algorithm that is deterministic. </p>
+<p>If \(\mbox{Bad}(x)\) is defined as\(\{ R: M{{’}}(x, R) \text{ is incorrect}\} \), we have: </p>
+<p>:\(\forall x\,  \mbox{Prob}_R[R \in \mbox{Bad}(x)] \leq \frac{1}{e^n}.\)&gt; </p>
+<p>The input size is ”n”, so there are 2&lt;sup&gt;”n”&lt;/sup&gt; possible inputs. Thus, by the [[union bound]], the probability that a random ”R” is bad for at least one input ”x” is </p>
+<p>:\({Prob}_R [\exists x\, R \in \mbox{Bad}(x)] \leq \frac{2^n}{e^n} {\lt} 1.\) </p>
+<p>In words, the probability that ”R” is bad for some ”x” is less than 1, therefore there must be an ”R” that is good for all ”x”. Take such an ”R” to be the advice string in our ”’P/poly”’ algorithm. </p>
+<h2 id="a0000000079">Prove that PP is closed under complement</h2>
+<p> algorithm A with the property that \({x\in L\Rightarrow \mathrm{Pr} [A(x) = 1]{\gt}\frac{1}{2}} \) and \({x\not \in L\Rightarrow \mathrm{Pr} [A(x) = 1]\leq \frac{1}{2}}\). </p>
+<p>&gt; Let \(f(|x|)\) be the &gt; polynomial upper bound on the running time of A on input x. Thus A &gt; makes at most \(f(|x|)\) random coin flips during its execution. In &gt; particular, \( x\in L\Rightarrow {\mathrm{Pr}}[A(x) = 1]\geq \frac{1}{2}+\frac{1}{2^{{f(|x|)}}}\). </p>
+<p>I understand that: </p>
+<p>- By definition of PP, \({x\in L\Rightarrow \mathrm{Pr} [A(x) = 1]{\gt}\frac{1}{2}} \). It means that if indeed \(x \in L\), more than half of the possible coin flip combinations would cause the algorithm to accept. - The algorithm’s running time is bound by \(f(|x|)\), then the probability of getting some specific combination of coin tosses (that accepts or rejects, we do not know) is bound by \((\frac{1}{2})^{f(|x|)} = \frac{1}{2^{{f(|x|)}}}\). </p>
+<p>But why is it so obvious that \( x\in L\Rightarrow {\mathrm{Pr}}[A(x) = 1]\geq \frac{1}{2}+\frac{1}{2^{{f(|x|)}}}\) </p>
+<div class="displaymath" id="a0000000080">
+  \[ x \not \in L \Rightarrow \Pr [A' \text{ acc } x] \le \frac{1}{2} \cdot \left(1- \frac{1}{2^{f(|x|)+1}} \right) {\lt} \frac{1}{2} \quad  \]
+</div>
+<div class="displaymath" id="a0000000081">
+  \[  \text{and} x \in L \Rightarrow \Pr [A' \text{ acc } x] \ge \left(\frac{1}{2}+\frac{1}{2^{f(|x|)}} \right)\cdot \left( 1-\frac{1}{2^{f(|x|)+1}} \right) {\gt} \frac{1}{2}. \]
+</div>
+<p>This justifies the assumption (since A is still a polynomial-time probabilistic algorithm) and completes the proof. </p>
+<p>    <span class="ovalbox"><span class="ovalbox"> <span class="parbox" style="width: 446.26725pt"> <div class="thm_thmwrapper theorem-style-plain" id="a0000000082">
+  <div class="thm_thmheading">
+    <span class="thm_thmcaption">
+    Theorem
+    </span>
+  </div>
+  <div class="thm_thmcontent">
+  <p>(extended rice) Let \(C \subset RE\) s.t \(\Sigma ^*\notin C,C\neq \emptyset .\) then \(L_C \notin RE\) </p>
+
+  </div>
+</div> \(L_C=\{ \langle M \rangle : M \text{ is TM and}L(M)\in C\} \notin RE\) <div class="proof_wrapper" id="a0000000083">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>\(\overline{ACC}\le _m L_C\) and Let \(M_A\) be TM that accept some \(A\in C\). Define \(f(\langle M,w \rangle )\mapsto \langle B_{M,w} \rangle \), <br />\(B_{M,w}\) On input \(x\): Emulate \(M_A(x)\) and \(M(w)\) in <b class="bfseries">parallel</b>, and <b class="bfseries">accept</b> if one of them does. <br /></p>
+<div class="displaymath" id="a0000000084">
+  \[ \langle B_{M,w} \rangle \in \overline{ACC}\Rightarrow L(B_{M,w})=A\in C \qquad \langle B_{M,w} \rangle \notin \overline{ACC}\Rightarrow L(B_{M,w})=\Sigma ^* \notin C \]
+</div>
+
+  </div>
+</div> </span></span></span> </p>
+<h2 id="a0000000085">Rice extended(not the version we saw)</h2>
+<p> <b class="bfseries">theorem</b> Given a property \(S \subseteq RE\), the language </p>
+<div class="displaymath" id="a0000000086">
+  \[  L_S = \{  \langle M \rangle \mid L(M) \in S \}   \]
+</div>
+<p> is recursively-enumerable (\(L_S \in RE\)) <b class="bfseries">if and only if</b> all the following three statements jointly hold <br />1. For any two \(L_1, L_2 \in RE\), if \(L_1 \in S\) and also \(L_1 \subseteq L_2\) then also \(L_2 \in S\). <br />2. If \(L_1\in S\) then there exists a finite subset \(L_2 \subseteq L_1\) so that \(L_2 \in S\). <br />3. The set of all *finite* languages in \(S\) is enumerable (in other words: there is a TM that enumerates all the finite languages \(L\in S\)).<br /></p>
+<div class="proof_wrapper" id="a0000000087">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p><b class="bfseries">If (1,2) hold, but (3)</b> does not, then \(L_S \notin RE\)*. Let’s assume that \(L_S \in RE\), and we’ll see that we have a way to accept any finite languages in \(S\) (and thus, the set of all these languages is RE), thus condition (3) holds and we reach a contradiction. How to decide if a finite \(L\) belongs to \(S\) or not? Easily – we use the description of \(L\) to construct a machine \(M_L\) that accepts only the words in \(L\), and now we run the machine of \(L_S\) on \(M_L\) (remember - we assumed \(L_S\in RE\), so there is a machine that accepts \(L_S\)!). If \(L\in S\) then \(\langle M_L \rangle \in L_S\) and since \(L_S\in RE\), its machine will say yes on the input \(\langle M_L \rangle \), and we are done. <br /><b class="bfseries">If (2,3) hold, but (1) does not,</b> then \(L_S \notin RE\)*. We assume that \(L_S \in RE\) and we’ll show that we have a way to decide \(HP\), leading to a contradiction. </p>
+<p>Because condition (1) doesn’t hold, there is a language \(L_1 \in S\) and a superset of it, \(L_2 \supseteq L_1\) so that \(L_2 \notin S\). Now we are going to repeat the argument used in Section 4 to decide \(HP\): given an input \((\langle M \rangle ,x)\) for \(HP\), we construct a machine \(M'\) whose language is \(L_1\) if \((\langle M \rangle ,x)\notin HP\) or otherwise, its language is \(L_2\). Then, we can decide \(HP\): either \(M\) halts on \(x\), or the RE-machine for \(L_S\) accepts \(M'\); we can run both in parallel and are guaranteed that at least one will halt. </p>
+<p>Let’s give the details of constructing \(M'\) (on input \(x'\)): </p>
+<p>1. Do the following in parallel: 1.1 run \(M\) on \(x\). 1.2 run the machine of \(L_1\) on \(x'\) 2. If 1.2 halts and accepts - accept. 3. If 1.1 halts: run the machine of \(L_2\) on \(x'\). </p>
+<p>Why does this work? If \((\langle M \rangle ,x)\notin HP\) then 1.1 never halts, and \(M'\) accepts exactly all the inputs that are being accepted at step 1.2, so \(L(M')=L_1\). On the other hand, if \((\langle M \rangle ,x)\in HP\) then, at some point step 1.1 halts and \(M'\) accepts exactly \(L_2\). It may happen that \(1.2\) accepts beforehand, but since \(L_1 \subseteq L_2\), this doesn’t change the language of \(M'\) in this case. <br /><b class="bfseries">If (1,3) hold, but (2) does not</b>, then \(L_S \notin RE\)*. Again, we will assume \(L_S\in RE\) and show that \(HP\) becomes decidable, which is a contradiction. </p>
+<p>If condition (2) doesn’t hold, then for any \(L_1\in S\), all its finite subsets \(L_2 \subseteq L_1\) satisfy \(L_2 \notin S\) (note that \(L_1\) must be infinite, since \(L_1\subseteq L_1\)). As in the above, in order to decide \(HP\) for a given input \((\langle M \rangle ,x)\), we construct a machine \(M'\) whose language is \(L_1\) if \((\langle M \rangle ,x)\notin HP\) and some finite \(L_2\) otherwise. The contradiction follows in a similar way as above. </p>
+<p>The construction of this machine is quite similar to the previous \(M'\) we constructed. The machine \(M'\) (on input \(x'\)) does: </p>
+<p>1. Runs \(M\) on \(x\) for \(|x'|\) steps. 2. If \(M\) halts during step 1 – reject 3. Otherwise, run the machine of \(L_1\) on \(x'\). </p>
+<p>It holds that, if \((\langle M \rangle ,x)\in HP\), then at some point, say after 1000 steps, \(M\) halts on \(x\). Therefore, step 1 will halt on (and reject) any input \(x'\) of length \({\gt}1000\). Therefore, in this case, \(L(M')\) is **finite**. Also note that \(L(M') \subseteq L_1\), and in particular, by our assumptions on the invalidity of condition (2), we have that \(L(M) \notin S\). </p>
+<p>On the other hand, if \((\langle M \rangle ,x)\notin HP\), then step 1 never halts, and we never reject at step 2. In this case it is easy to see that \(L(M)=L_1\) and in particular, \(L(M)\in S\). </p>
+<p>We are left to show the other direction of the extended theorem. That is, we need to show that <b class="bfseries">if all the conditions (1,2,3) hold,</b> then we have a TM that accepts \(L_S\), that is, \(L_S \in RE\). In other words, we need to show a machine \(M_S\) so that for any input \(\langle M \rangle \) for which \(L(M) \in S\), the machine accepts this input, \(M_S(\langle M \rangle ) \to \textsf{accept}\). </p>
+<p>Here is how the machine \(M_S\) behaves (on input \(\langle M \rangle \)): </p>
+<p>1. Let \(M_{\text{enum }S}\) be the machine that enumerates all the finite languages in \(S\), guaranteed by condition (3). 2. Run the following in parallel for \(i=1,2,...\) 2.1 Run \(M_{\text{enum }S}\) until it outputs the language \(L_i\) 2.2. Check if \(M\) accepts all the words of \(L_i\) (run \(M\) on these words, again in parallel). 2.3. If for some \(i\), \(M\) accepts all the words of \(L_i\) – accept. </p>
+<p>Why does it work? If \(L(M) \in S\) then it has a finite subset \(L_j \in S\), and once \(M_{\text{enum }S}\) outputs that subset, step 2.2/2.3 will find that \(M\) accepts all the words in that language and accept. </p>
+<p>On the other hand, if \(L(M) \notin S\) it cannot be accepting all the words in \(L_i\) for any \(i=1,2,...\). Indeed, by condition (1), any \(L' \supseteq L_i\) is also in \(S\), so if \(M\) accepts all the words in \(L_i\) for some \(i\), then \(L(M)\supseteq L_i\) and thus \(L(M) \in S\), in contradiction. </p>
+<div class="centered"> Given a non trivial property \(S \subsetneq RE\), so that \(\emptyset \in S\), the language &gt; <div class="displaymath" id="a0000000088">
+  \[  L_S = \{  \langle M \rangle \mid L(M) \in S \}   \]
+</div> &gt; is not recursively-enumerable, that is, \(L_S \notin RE\).</div>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0013.html" title="change probability in definition of PP"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0015.html" title="Prove/ Disprove"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

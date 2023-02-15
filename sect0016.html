@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: Determine if \(L\) in \(\mathcal{P}\)</title>
+<link rel="prev" href="sect0015.html" title="Prove/ Disprove" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000017">8 Determine if \(L\) in \(\mathcal{P}\)</h1>
+<ol class="enumerate">
+  <li><p>Input: Sets \(A_1, ..., A_n\), and a number \(k\).<br />Question: do there exist \(k\) mutually disjoint sets \(A_{i1} , ..., A_{ik}\) <b class="bfseries"> not in \(\mathcal{P}\)</b></p>
+</li>
+  <li><p>Input: Sets \(A_1, ..., A_n\).<br />Question: do there exist 3 mutually disjoint sets \(A_{i} ,A_{j}, A_{k}\) <b class="bfseries"> in \(\mathcal{P}\)</b></p>
+</li>
+  <li><p>Input: Sets \(A_1, ..., A_n\), and a number \(k\).<br />Question: do there exist \(k\) sets such that \(A_{i1} , ..., A_{ik}\) such that \(A_i\cap A_j\neq \emptyset \) <b class="bfseries"> not in \(\mathcal{P}\)</b></p>
+</li>
+  <li><p>Input: a CNF formula \(\psi \) with at most 50 variables. <br />Question: does there exist an assignment that satisfies \(\psi \) <b class="bfseries"> in \(\mathcal{P}\)</b></p>
+</li>
+  <li><p>Input: a CNF formula \(\psi \) with at most 50 clauses. <br />Question: does there exist an assignment that satisfies \(\psi \) <b class="bfseries"> in \(\mathcal{P}\)</b></p>
+</li>
+  <li><p>Input: a 3CNF formula \(\psi \) with even number of variables. <br />Question: does there exist an assignment that satisfies \(\psi \) and gives \(True\) for exactly one half of the variables? <b class="bfseries"> not in \(\mathcal{P}\)</b></p>
+</li>
+  <li><p>Input: undirected graph \(G\), a number \(k\). <br />Question: does there exist in \(G\) a clique of size at least \(k\) or an independent set of size at least \(k\)?<b class="bfseries"> not in \(\mathcal{P}\)</b></p>
+</li>
+</ol>
+<h3 id="a0000000094"> Resulting regular expres­sion:</h3>
+<p> \(L'=\{ 0^i1^j:i,j\ge 0\text{ and } \exists w \in L s.t |w|=i+j\} \) is regular if \(L\) regular <b class="bfseries">T</b>. built NFA \(Q\times \{ 0,1\} \),\(\delta '((q,0),0)=\{ (\delta (q,\sigma ),0):\sigma \in \Sigma ^*\} .\delta '((q,0),\epsilon )=\{ (\delta (q,1),\sigma ):\sigma \in \Sigma ^*\} \)<br />\(L'=\{ 0^i1^j:i,j\ge 0\text{ and } \exists w \in L s.t |w|=|i-j|\} \)is regular if \(L\) regular <b class="bfseries">F</b>. take \(L=\epsilon \) r = r1* r2(r4+­r3r­1*r2)* where: r1: initial → initial r2: initial → accepting r3: accepting → initial r4: accepting → accepting</p>
+<div class="displaymath" id="a0000000095">
+  \[ L_2 = \{ y : \exists x,z\  \  s.t.|x|=|z|\  and\  xyz \in L \}  \]
+</div>
+<p>(Example) is regular.onsider some DFA for \(L\). For every \(n \geq 0\), let \(A_n\) be the set of states \(s\) such that there is *some* word of length \(n\) which leads the DFA from the initial state to \(s\). Let \(B_n\) be the set of states \(t\) such that there is *some* word of length \(n\) which leads the DFA from \(t\) to an accepting state. Finally, for any two states \(s,t\), let \(R_{s,t}\) be the (regular) set of words leading the DFA from \(s\) to \(t\). We have </p>
+<div class="displaymath" id="a0000000096">
+  \[  L_2 = \bigcup _{n \geq 0} \bigcup _{\substack {s \in A_n \\ t \in B_n}} R_{s,t}.  \]
+</div>
+<p> Since there are only finitely many possibilities for \(s,t\), the union is in fact finite, and so regular. </p>
+<h2 id="a0000000097">8.1 Examples </h2>
+<div class="centered"> <span class="fbox" style="width: None"> <span class="parbox" style="width: 0.0pt"></span></span> </div>
+<ol class="enumerate">
+  <li><p>\(\mathcal{L} = \{ \langle M\rangle : M \) is a TM and \(|L(M)| {\gt} 10\}  \in \mathcal{RE/R}\) </p>
+</li>
+  <li><p>\( \mathcal{L} = \{  M : \langle M\rangle \text{ is a TM that accepts 1 but does not accept 0}\}  \in \overline{\mathcal{RE}\cup \text{co-} \mathcal{RE}} \) </p>
+</li>
+  <li><p>\(\mathcal{L} = \{ \langle M_1,M_2\rangle : M_1,M_2 \) are TMs and \(\mathcal{L}(M_1)\cap \mathcal{L}(M_2)=\emptyset \}  \in \text{co-} \mathcal{RE/R}\) </p>
+</li>
+  <li><p>\(\mathcal{L} = \{ \langle M_1,M_2\rangle : M_1,M_2 \) are TMs and \(\mathcal{L}(M_1)\subseteq \mathcal{L}(M_2)\}  \in \overline{\mathcal{RE}\cup \text{co-} \mathcal{RE}}\) </p>
+</li>
+  <li><p>\(L_n=\lbrace w0w_n | w \in \lbrace 0,1\rbrace ^* \wedge w_n \in \lbrace 0,1\rbrace ^{n-1} \rbrace \) is Regular </p>
+</li>
+  <li><p>\( L_1 = \lbrace w : \#  a(w) \geq \#  b(w)\rbrace \text{ over } \Sigma = \lbrace a, b, c\rbrace \) \(L_1\) is not regular </p>
+</li>
+  <li><p>\( L_2 = \lbrace w : |w| \in \mathbb {N}_{even} \wedge w=w^R )\rbrace \text{ over } \) \(L_2\) is not regular </p>
+</li>
+  <li><p>\( L_4 = \lbrace w : |w| \in \mathbb {N}\text{ s.t } |w|=n^3 \rbrace \text{ over }\) \(L_4\) is not regular </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM and there exists an input on which M halts in less than \(|M|\) steps \(\} \in R\) </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM and \(|L(M)|\le 3 \} \in \)<b class="bfseries">co-RE</b> reduce \(\overline{HALT}\). idea copies M and x to its tape, and runs M on x; it accepts if M halts on x. </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) M is a TM and \(|L(M)|\ge 3 \} \in \)<b class="bfseries"> RE</b> reduce \(HALT\). It erases w, puts M and x on its tape, and runs M on x and accepts if M halts on x. </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM that accepts all even numbers \(\} \in \)<b class="bfseries">not RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM and \(L(M)\) is finite \(\} \in \)<b class="bfseries">not RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM and \(L(M)\) is infinite \(\} \in \)<b class="bfseries">not RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | \) is a TM and \( L(M)\) is countable \(\} \in \)<b class="bfseries">R</b> This is the language of all TM’s, since there are no uncountable languages ( finite alphabets and finite-length strings). </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM and \( L(M)\) is uncountable \(\} \in \)<b class="bfseries"> R</b> This is the empty set </p>
+</li>
+  <li><p>\(L=\{  \langle M_1,M_2\rangle | \) are TM’s and \(\epsilon \in L(M_1)\cup L(M_2)\} \in \) <b class="bfseries">RE</b>. reduce HALT s.t \( \langle M,x \rangle \mapsto \langle M',M' \rangle \) \( \langle M,x\rangle \) halts on \(x \Rightarrow M'\) accepts all strings, and in particular it accepts \(\epsilon \Rightarrow \epsilon \in L(M')\cap L(M')\). </p>
+</li>
+  <li><p>\(L=\{  \langle M_1,M_2\rangle | \) are TM’s and \(\epsilon \in L(M_1)\cap L(M_2)\} \in \) <b class="bfseries">RE</b>. </p>
+</li>
+  <li><p>\(L=\{  \langle M_1,M_2\rangle | \) are TM’s and \(\epsilon \in L(M_1)/ L(M_2)\} \in \) <b class="bfseries">not RE</b>.<br />\(\overline{HALT}(M,x)\mapsto (M_1,M_2).\) s.t \(L(M_1)=\Sigma ^*\) </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM. and \(M_0\) halt on all input, and \(M_0\in L(M) \} \in \)<b class="bfseries"> RE</b> using Rice \(C=\{ L\in RE :M_0 \in L\} \) </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM. and \(M_0\) halt on all input, and \(M\in L(M_0) \} \in \)<b class="bfseries"> R</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM. and \(x\) is str and there exists a TM, \(M'\) , such that \(M\notin L(M')\cap L(M) \} \in \)<b class="bfseries"> R</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M\rangle | M \) is a TM. , and there exists an input whose length is less than 100, on which M halts \(\} \in .\)<b class="bfseries"> RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle k,x,M_1,\dots M_k\rangle | \forall i M\) is a TM, and at least \(k/2\) TM’s of halt on x \(\} \in .\)<b class="bfseries"> RE</b> its \(\emptyset \) reduce \(HALT(M,X) \mapsto (2,x,M,M')\) </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) is a TM and M halts on all palindromes .\(\} \in .\)<b class="bfseries">not RE</b> .\(\overline{HALT}(M,w)\mapsto M'\) on input x works as follows: \(M'\) runs M on w for \(|x|\) steps: if M halts on w within \(|x|\) steps, reject, otherwise accept.(if \(x\) is polindrome) </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) is a TM and \(L(M)\cap \{ a^{2^n}\} \}  \) is empty.\(\} \in .\)<b class="bfseries">not RE</b> \(\overline{HALT}(M,w)\mapsto M'\) \(M'\) on input x: erase x, and run M on w. If M halts on w then \(M'\) accepts. </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) is a TM that halts on all inputs and \(L(M) = L'\) for some undecidable language \(L'\) .\(\} \in .\)<b class="bfseries">R</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) is a TM and M accepts (at least) two strings of different lengths .\(\} \in .\)<b class="bfseries">RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) M is a TM such that both \(L(M)\) and \(\overline{ L(M)}\) are infinite .\(\} \in .\)<b class="bfseries">not RE</b> M’ on input x works as follows: if x is of odd length, accept. if x is of even length, run M on w. If M halts, accept.<br />\((M,w)\in \overline{HALT} \Rightarrow M\) does not halt on \(w\Rightarrow M'\) accept all odd length str and reject all even.\(\Rightarrow L(M)\) contain even-length strings,\(|L|=\inf \) </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) is a TM, and \(|L(M)|\) is prime.\(\} \in .\)<b class="bfseries">not RE</b> \(M'\) on input x: if x is one of the first three strings (in lexicographic order) of \(\Sigma *\) , then accept. Otherwise, run M on w. If M halts on w, and x is the 4 th string in \(\Sigma *\) accept; otherwise, reject. </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) and exists \(x\) s.t for every \(y\in L(M),xy\notin L(M) .\} \in .\)<b class="bfseries">not RE</b> \(M'\) on input x: it runs M on w; if M halts on w, \(M'\) accepts. </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) and exists \(x,y\) s.t for every \(y\in L(M),y\notin L(M) .\} \in .\)<b class="bfseries">Recursive</b> (the language of all Turing machines) </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) is TM and exists \(M'\) s.t \(M\ne M'\) and \(L(M)= L(M') .\} \in .\)<b class="bfseries">Recursive</b>(the language of all Turing machines) </p>
+</li>
+  <li><p>\( L=\{  \langle M_1,M_2 \rangle |M\) and \(L(M_1)\le _m L(M_2)\} \)<b class="bfseries">not RE</b> \(\overline{HT}(M,w)=\langle M_1,M_2\rangle .\) s.t \(L(M_2)=\emptyset \). \(M_1\) on input \(y\): run M on \(w\) if M halts, check whether y is of the form \(\langle M' ,z\rangle \) where \(M'\) is TM and z is str. if so run \(M'\) on z. if \(M'\) halts, \(M_1 \) accept . hence (1)if \((M,w)\in \overline{HT} \Rightarrow L(M_1)=\emptyset \) (2) otherwize then \(L(M_1)=HALT\) </p>
+</li>
+  <li><p>\( L=\{  \langle M_1,M_2 \rangle |M\) M does not accept any string w such that 001 is a prefix of \(w\} \)<b class="bfseries">not RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) M does not accept any string w s x is a prefix of \(w\} \)<b class="bfseries">not RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M \rangle |M\) x is prefix of \(M \} \)<b class="bfseries">Recurcive</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M_1,M_2,M_3 \rangle |L(M_1)=L(M_2)\cup L(m_3) \} \)<b class="bfseries">not RE</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M_1,M_2,M_3 \rangle |L(M_1)\subseteq L(M_2)\cup L(m_3) \} \)<b class="bfseries">not RE</b> M1 on x: runs M on w; if M halts, M1 accepts.M2 on y: reject. M3 on z: reject. </p>
+</li>
+  <li><p>\( L=\{  \langle M_1 \rangle \) there exist two TM’s M2 and M3 such that \(|L(M_1)\subseteq L(M_2)\cup L(m_3) \} \)<b class="bfseries">Recursive</b> </p>
+</li>
+  <li><p>\( L=\{  \langle M,w \rangle \) M is a TM that accepts w using at most \(2^|w|\) squares of its tape\(\} \)<b class="bfseries">Recursive</b> Let m be the number of states in M, and k be the size of the alphabet that M uses, and \(r=|w|\) if M uses at most \(2^r\) squares of its tape, then there are at most \(a=mk^{2^r}2^r\) configurations.If M runs on w for more than \(a\) steps, and does not use more than \(2^r\) squares of its tape, then M must be in the one configuration at least twice.<br />\(M'\) runs M on w for at most a + 1 steps.If M accepts w within a steps with using at most \(2^r\) squares, \(m'\) halts and accepts </p>
+</li>
+  <li><p>Wich one is <b class="bfseries">False</b> for sure \(DTIME[n^2]=L\)\(\quad P=NP\quad RL\in P\) </p>
+</li>
+  <li><p>Wich one we dont know if it close under klee star \(L\)\(\quad P\quad NP \quad EXP \) </p>
+</li>
+  <li><p>Let \(f\) be computable with circut size \(|S|\) we can construct circuit size \(O(S)\) with only AND,NOT gate for sure. </p>
+</li>
+  <li><p>\(L=\{  G|\text{G is an undirected graph that contains no odd length cycle}\} \in RL ,NL\)(mybe) </p>
+</li>
+  <li><p>\(L=\{  G,1^k |\text{ G is an undirected with exactly k triangles}\} \in L\) </p>
+</li>
+  <li><p>\(L=\{  \psi \) is ( always true) \(\} \in Co-NP\) complete </p>
+</li>
+  <li><p>\(L=\{  G,k |\text{ G is an undirected with exactly k diffrent SCC}\} \in SPACE(\log ^2 n),P\) </p>
+</li>
+  <li><p>If we find that \(S=\{  G,s,t \text{ dont have path between s and t }\} \in L\) then \(L=Co-NL\) </p>
+</li>
+  <li><p>\(\{ \langle G,s,t \rangle \)</p>
+</li>
+</ol>
+<p> G is an directed graph, and the shortest patch between \(\)s,t\( is at \textbf{least} size \)|V|/2 }NL\(\) \(\{ \langle G,s,t \rangle \) G is an directed graph, and exsit patch between \(\)s,t\( \textbf{excatliy} size \)|V|/2 }NPC\(\) If \(\mathrm{NTIME}(n^{100})\subseteq \mathrm{TIME}(n^{1000}) \) then \(P=NP,EXP=NEXP,\mathrm{NSPACE}(n^{50})\subseteq \mathrm{SPACE}(n^{500}) \) \( EXACT3SAT=\{ \varphi \in 3SAT:\)every clause of \(\)ϕ\( has exactly 3 distinct variables\)}\(\) is <b class="bfseries">NPC</b> \( L_2=\{ \langle M,1^n \rangle :\text{M is a TM and there exists a string that M accepts in n steps}\}  \)is <b class="bfseries">NPC</b> \(L=\lbrace xyz:xy^Rz \in L \rbrace \) is regular if \(L\) <b class="bfseries">Recursive</b> \(L=\lbrace xy \in \Sigma ^* :(x\in L) \text{ XOR } (y\in L) \rbrace \) is regular regular if \(L\) <b class="bfseries">Recursive</b>. </p>
+<ol class="enumerate">
+</ol>
+
+<p><span class="ovalbox"><span class="ovalbox"> <span class="parbox" style="width: 446.26725pt"> \(\spadesuit \) stand for respect under logspace reduction<br />CVAL=\(\{  \langle C,x \rangle : \text{C is boolean circut and }C(x)=1\}  \in \P -\)complete \(\spadesuit \) <br />STCON=\(\{  \langle G,s,t \rangle : \text{G is a directed graph and exsit path from s to t }\}  \in \P ,NL -\)complete \(\spadesuit \) <br />UHAMPATH=\(\{  \langle G,s,t \rangle : \text{G is a undirected graph and exsit ham' path from s to t }\}  \in NPC \) <br />UHAMCYCLE=\(\{  \langle G \rangle : \text{G is a undirected graph has Hamiltonian cycle }\}  \in NPC \) <br />SUBSET-SUM=\(\{  \langle S=s_1\dots s_k, t \rangle : \exists T\subseteq S ,\sum _{s\in T} s=t \}  \in NPC \) </span></span></span> </p>
+<p><span class="ovalbox"><span class="ovalbox"> <span class="parbox" style="width: 446.26725pt"> <div class="thm_thmwrapper theorem-style-plain" id="a0000000098">
+  <div class="thm_thmheading">
+    <span class="thm_thmcaption">
+    Theorem
+    </span>
+  </div>
+  <div class="thm_thmcontent">
+  <p>(extended rice) Let \(C \subset RE\) s.t \(\Sigma ^*\notin C,C\neq \emptyset .\) then \(L_C \notin RE\) </p>
+
+  </div>
+</div> \(L_C=\{ \langle M \rangle : M \text{ is TM and}L(M)\in C\} \notin RE\) <div class="proof_wrapper" id="a0000000099">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>\(\overline{ACC}\le _m L_C\) and Let \(M_A\) be TM that accept some \(A\in C\). Define \(f(\langle M,w \rangle )\mapsto \langle B_{M,w} \rangle \), <br />\(B_{M,w}\) On input \(x\): Emulate \(M_A(x)\) and \(M(w)\) in <b class="bfseries">parallel</b>, and <b class="bfseries">accept</b> if one of them does. <br /></p>
+<div class="displaymath" id="a0000000100">
+  \[ \langle M,w \rangle \in \overline{ACC}\Rightarrow L(B_{M,w})=A\in C \qquad \langle M,w \rangle \notin \overline{ACC}\Rightarrow L(B_{M,w})=\Sigma ^* \notin C \]
+</div>
+
+  </div>
+</div> </span></span></span> </p>
+<h3 id="a0000000101">2-NFA with same L</h3>
+<p> to compare languages accepted by both we have to figure out if L(A) is equal to L(B) or not. Thus, you have to find out if L(A)-L(B) and L(B)-L(A) is null set or not. (Reason1)<br />Part1: To find this out, we construct NFA X from NFA A and NFA B, . If X is empty set then L(A) = L(B) else L(A) != L(B). (Reason2) <br />Part2: Now, we have to find out an efficient way of proving or disproving X is empty set. When will be X empty as DFA or NFA? Answer: X will be empty when there is no path leading from starting state to any of the final state of X. We can use BFS or DFS for this.\(X=(A\cap B')\cup (B\cap A')=\emptyset ?\) </p>
+<div class="displaymath" id="a0000000102">
+  \[  (a)\qquad L = \{  \langle M,w \rangle M \text{attempts to move its head left when its head is on the leftmost tape cell}\}   \]
+</div>
+<p> We prove by contradiction that L is undecidable. Assume L was decidable, and let \(M*\) be a TM that decides it. We construct a TM, M0 , that decides HP (the halting problem), i.e., we show HP is decidable as well, which is a contradiction. The TM M0 on input hM, wi: i. build a TM, M00 , from M, where M00 shifts w one tape cell to the right, and mark the leftmost tape cell with ]. ii. TM M00 runs M on w. iii. If M00 encounters the ] symbol during the run of M on w, then M00 moves to the right and simulates M reaching the leftmost tape cell. iv. If M halts and accepts, M00 simulates moving its head all the way to the left and off the leftmost tape cell The TM M0 runs \(M*\) on the input hM0 , wi. If \(M*\) accepts, M0 accepts; otherwise, M0 rejects. Notice that \(M*\) always halts (accepts or rejects) since we assumed it is a decider. You can prove now that M00 moves its head off of the leftmost tape cell iff M halts (and accepts) w. It then follows that M0 decides HP, and hence HP is decidable, which is a contradiction. Therfore, the language L is not decidable. </p>
+<div class="displaymath" id="a0000000103">
+  \[  (b)\qquad L = \{  \langle M,w \rangle M \text{moves its head left on input }w\}   \]
+</div>
+<p> The trick to proving this language is decidable is to notice that M moves its head left on an input w if and only if it does so within the first \(|w| + |Q| + 1 \) steps of its run on w, where \(|Q|\) is the number of states of the machine M. Prove it! Therefore, to decide whether an input hM, wi is an instance of L, the decider\(M*\) simply runs M on w for at most \(|w| + |Q| + 1 \)steps and accepts iff M does moves its head left (the correctness of this construction follows immediately after you prove the validity of the above trick) </p>
+<p><span class="ovalbox"> \(ACCBS = \{  \langle M,w,k \rangle M \text{ is a TM that accepts w using k cells}\} \in R \)</span> <span class="ovalbox">\(b=|Q|\times |\Gamma |^k\times k\) is a bound on the number of k cell configurations of M.</span> <b class="bfseries">Any \(f(n)\) space bounded Turing machine also runs in time \(2^{O(f(n))}\).</b> Is this because a configuration consists of a state, a position of the head and the contents of the work tape, which is \(\vert Q \vert \cdot f(n) \cdot \vert \Gamma \vert ^{f(n)}\) If there are \(k\) possible configurations, then any such Turing machine either runs in time at most \(k\), or it loops forever. That’s because if it runs for at least \(k+1\) time steps, some configuration must be repeated; and if a configuration is repeated, it will continue repeating forever. </p>
+<p>Let \(|\Gamma |=2^c\), i.e., \(c = \lg |\Gamma |\). Then \(|\Gamma |^{f(n)} = (2^c)^{f(n)} = 2^{c f(n)} = 2^{O(f(n)}\). For similar reasons, \(\vert Q \vert \cdot f(n) \cdot \vert \Gamma \vert ^{f(n)} = 2^{O(f(n)}\). So, the number of possible configurations of a \(f(n)\)-space-bounded Turing machine is \(2^{O(f(n)}\), and thus any such machine must either halt in time at most \(2^{O(f(n)}\) or loop forever.<br /><span class="ovalbox">\(\{  \langle M \rangle \mid M \mbox{ is a Turing machine such that }L(M) \in P \mbox{ } \} \) is undecidable. </span> </p>
+<p><span class="ovalbox"> { \(\langle M \rangle \mid M \mbox{ is a Turing machine such that }M \in P \mbox{ } \} \)=\(\left\{  \left\langle M \right\rangle | (\exists k \forall x) M(x) \text{ halts in } O \left( |x|^{k}\right) \text{ time} \right\} \)</span> We reduce from the halting problem. Suppose that we are given a machine \(M\), and we are to decide whether \(M\) halts on the empty input. We construct a new machine \(M'\) accepting a single input \(x\), which operates as follows: </p>
+<p>1. Let \(n = |x|\). 2. \(M'\) runs \(M\) for \(n\) steps. 3. If \(M\) halted within \(n\) steps then \(M'\) runs a dummy loop taking exponential time \(\Omega (2^n)\). Otherwise, \(M'\) just halts. </p>
+<p>Since Turing machines can be simulated with only polynomial overhead, if \(M\) doesn’t halt then \(M'\) runs in polynomial time. If \(M\) halts, then \(M'\) takes exponential time. Hence \(M\) halts iff \(M'\) is not polynomial time. </p>
+<p>— </p>
+<p>More generally, this shows that even if we know that \(M\) runs in time at most \(f(n)\) for some superpolynomial time-constructible \(f\), then we cannot decide whether \(M\) runs in polynomial time.</p>
+<div class="proof_wrapper" id="a0000000104">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <div class="displaymath" id="a0000000105">
+  \[ \phi =\bigwedge _{m=1}^{n}(x_m\vee y_m\vee z_m)\qquad \mathsf{SAT}\leq _p \mathsf{IndSet} \]
+</div>
+<p> with \(m\) clauses, produce the graph \(G_\phi \) that contains a triangle for each clause, with vertices of the triangle labeled by the literals of the clause. Add an edge between any two complementary literals from different triangles. Finally, set \(k=m\). In our example, we have triangles on \(x,y,\overline{z}\) and on \(\overline{x},w,z\) plus the edges \((x,\overline{x})\) and \((\overline{z},z)\). </p>
+<p>&gt;We need to prove two directions. First, if \(\phi \) is satisfiable, then \(G_\phi \) has an independent set of size at least \(k\). Secondly, if \(G_\phi \) has an independent set of size at least \(k\), then \(\phi \) is satisfiable. (Note that the latter is the contrapositive of the implication "if \(\phi \) is not satisfiable, then \(G_\phi \) does not have an independent set of size at least k".) </p>
+<p>&gt;For the first direction, consider a satisfying assignment for \(\phi \). Take one true literal from every clause, and put the corresponding graph vertex into a set \(S\). Observe that \(S\) is an independent set of size \(k\) (where \(k\) is the number of clauses in \(\phi \)). </p>
+<p>&gt;For the other direction, take an independent set \(S\) of size \(k\) in \(G_\phi \). Observe that \(S\) contains exactly one vertex from each triangle (clause) , and that \(S\) does not contain any conflicting pair of literals (such as \(x\) and \(\overline{x}\), since any such pair of conflicting literals are connected by an edge in \(G_\phi \)). Hence, we can assign the value True to all the literals corresponding with the vertices in the set \(S\), and thereby satisfy the formula \(\phi \). </p>
+<p>&gt;This reduction is polynomial in time because \(\Huge \dots ?\) </p>
+<p>I’ve looked at many different examples of how this is done, and everything I find online includes everything in the proof except the argument of why this is polynomial. I presume it’s being left out because it’s trivial, but that doesn’t help me when I’m trying to learn how to explain such things. </p>
+
+  </div>
+</div>
+<p><span class="ovalbox">\(L=\{ \langle M,1^n \rangle :\text{M is a TM and exists a string that M accepts in n steps}\} \) (cook-levin)</span><br />a.\(L\in NPC\) The witness is a word that M accepts in at most n steps b. \(L'\in NP\) and let V be a verifier for \(L’\) of running time at most p for some polynomial p. For a string w, let \(v_w\) be the TM that on input c, emulates \(V(w,c)\). Consider the reduction \(f(w)=(\langle V_w,1^{p(|w|)}\rangle \) It is easy to verify that f is polytime computable, and that \(f(w) \in L \leftrightarrow w\in L\) </p>
+<div class="centered"> <b class="bfseries">3-SAT</b>: Given a CNF formula \(\varphi \), where every clause in \(\varphi \) has *exactly* 3 literals in it, one should determine if there exist an assignment that satisfies it. <br /><b class="bfseries">Max-2-SAT</b>: Given a CNF formula, where every clause in \(\phi \) has *exactly* 2 literals in it, and a positive number \(k\), one should determine if there exist an assignment that satisfies *at least* \(k\) clauses. </div>
+<div class="proof_wrapper" id="a0000000106">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>Replace a singleton clause \(a\) with \(a \lor b\) and many copies of \(\lnot b \lor c\), \(\lnot b \lor \lnot c\). Reductions without extra variables don’t work even when singleton clauses are allowed. There are five types of clauses: \(\ell _1,\lnot \ell _1, \ell _1 \lor \ell _2\), \(\ell _1 \lor \lnot \ell _2\), \(\lnot \ell _1 \lor \lnot \ell _2\). Suppose that \(k\) of \(\ell _1,\ell _2,\ell _2\) are true. The probability that a random clause of each type is true is: </p>
+<div class="displaymath" id="a0000000107">
+  \[  \begin{array}{c|cccc} k& 0& 1& 2& 3\\ \hline \ell _1 &  0 &  1/3 &  2/3 &  1 \\ \lnot \ell _1 &  1 &  2/3 &  1/3 &  0 \\ \ell _1 \lor \ell _2 &  0 &  2/3 &  1 &  1\\ \ell _1 \lor \lnot \ell _2 &  1 &  1/3 &  1/3 &  1\\ \lnot \ell _1 \lor \lnot \ell _2 &  1 &  1 &  2/3 &  0 \end{array}  \]
+</div>
+<p> We would like to take a convex combination of these rows which is of the form </p>
+<div class="displaymath" id="a0000000108">
+  \[  \begin{array}{cccc} \alpha &  \beta &  \beta &  \beta \end{array}  \]
+</div>
+<p> However, all such convex combinations have \(\alpha = \beta \).</p>
+
+  </div>
+</div>
+
+<div class="displaymath" id="a0000000109">
+  \[ 3SAT\le _P \text{exactly 1/3 SAT}  \]
+</div>
+<div class="proof_wrapper" id="a0000000110">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>Let \(z\) be a new variable not in \(\phi \). Let there be \(m\) clauses in \(\phi \). We add \((z \lor \lnot z)\) and \(2m+2\) copies of \((z)\) to \(\phi \). In every exactly 1/3-satisfying assignment \(z\) must be false. </p>
+<p>Let \(\phi \land (z \lor \lnot z) \land (z) \land (z) \land ... (2m+2) \) copies \(...\land (z) = \phi '\). The following claim is easy to prove. </p>
+<p>Claim: \(\phi \) is satisfiable iff \(\phi '\) has exactly 1/3rd satisfiable clauses. </p>
+<p>Therfore 3SAT \(\leq _P\) 1/3-CNFSAT, and hence 1/3-CNFSAT is NP-complete. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0015.html" title="Prove/ Disprove"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

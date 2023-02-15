@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: \(\textbf{PP=RP}\) consequences</title>
+<link rel="next" href="sect0013.html" title=" change probability in definition of PP " />
+<link rel="prev" href="sect0011.html" title="Randomized" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000013">\(\textbf{PP=RP}\) consequences</h1>
+<div class="displaymath" id="a0000000077">
+  \[ \mathsf{PP=RP},\mathsf{coPP=coRP},\mathsf{PP=coPP=coRP=RP=ZPP=BPP\subseteq P/poly} \]
+</div>
+<p> If \(\textbf{PP}=\textbf{RP}\) then you have a collapse to the first level, namely \(\textbf{PH}=\textbf{NP}\). Assume \(\textbf{PP}=\textbf{RP}\), since \(\textbf{PP}\) is closed under complement we have \(\textbf{RP}=co{\textbf{RP}}=\textbf{ZPP}\), thus \(\textbf{PP}=\textbf{ZPP}\). </p>
+<p>Let \(L\) be a language in \(\textbf{PP}^{\textbf{ZPP}}\), then there exists a probabilistic polynomial time Turing machine with access to a \(\textbf{ZPP}\) oracle \(\mathcal{O}\), call it \(M_{\mathcal{O}}\), such that: </p>
+<p>\(x\in L\Rightarrow \Pr \left[M_{\mathcal{O}} \text{ accepts x}\right]{\gt}\frac{1}{2}\), and </p>
+<p>\(x\notin L\Rightarrow \Pr \left[M_{\mathcal{O}} \text{ accepts x}\right]\le \frac{1}{2}-\frac{1}{2^{n^c}}\). </p>
+<p>Where \(n^c\) is the running time of \(M_{\mathcal{O}}\) (in the standard definition, the second inequality appears with \(\le \frac{1}{2}\), however it can be improved to \({\lt}\frac{1}{2}\) and thus to the above). </p>
+<p>Suppose that the Turing machine which decides \(\mathcal{O}\) has expected runtime \(n^d\). Now, let us look at the machine \(M\), which replaces each oracle call of \(M_{\mathcal{O}}\) by a \(t\) steps simulation of the \(\textbf{ZPP}\) machine for \(\mathcal{O}\), and repeats this simulation \(k\) times. If we come upon an oracle call, for which this process did not result in an answer (none of the \(k\) \(t\)-steps simulations halted), then \(M\) rejects. </p>
+<p>Let \(H\) denote the event that all of the simulations halted in the given time, then: </p>
+<p>\(\Pr \left[\text{M accepts x}\right]=\Pr \left[\text{M accepts x} | H\right]\Pr [H]+\Pr \left[\text{M accepts x}\Big| \overline{H}\right]\Pr \left[\overline{H}\right]=\Pr \left[\text{M accepts x} | H\right]\Pr [H]=\Pr \left[M_{\mathcal{O}} \text{ accepts x}\right]\Pr [H]\). </p>
+<p>Thus, we have: </p>
+<p>\(x\in L\Rightarrow \Pr \left[\text{M accepts x}\right]{\gt}\frac{1}{2}\Pr [H]\), and </p>
+<p>\(x\notin L\Rightarrow \Pr \left[\text{M accepts x}\right]\le \left(\frac{1}{2}-\frac{1}{2^{n^c}}\right)\Pr [H]\le \frac{1}{2}-\frac{1}{2^{n^c}}\). </p>
+<p>By Markov’s inequality, a single simulation does not halt with probability \(\le \frac{n^d}{t}\), so \(k\) \(t\)-steps simulations do not output an answer with probability \(\le \left(\frac{n^{d}}{t}\right)^k\). By the union bound we have \(\Pr [H]\ge 1-n^c\left(\frac{n^{d}}{t}\right)^k\ge 1-\frac{1}{2^{n^c}}\), for \(t=2n^d\) and \(k=2n^c\). In this case \(M\) acheives the following separation: </p>
+<p>\(x\in L\Rightarrow \Pr \left[\text{M accepts x}\right]{\gt}\frac{1}{2}\left(1-2^{-n^c}\right)\), and </p>
+<p>\(x\notin L\Rightarrow \Pr \left[\text{M accepts x}\right]\le \frac{1}{2}-2^{-n^c}{\lt}\frac{1}{2}-\frac{1}{2}2^{-n^c}\) </p>
+<p>Which proves \(L\in \textbf{PP}\), since we can replace the constant \(\frac{1}{2}\) with any function \(f(x)\in \textbf{FP}\). </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0011.html" title="Randomized"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0013.html" title="change probability in definition of PP"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>

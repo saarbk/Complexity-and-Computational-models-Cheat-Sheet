@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>: Prove/ Disprove</title>
+<link rel="next" href="sect0016.html" title="Determine if L in P" />
+<link rel="prev" href="sect0014.html" title="CircuitSat  DTIME(2n) consequences" />
+<link rel="up" href="index.html" title="" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/my_style.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html"></a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Algorithm Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Turing Machine</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Reductions</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref"></span> <span class="toc_entry">Boolean Circuit</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref"></span> <span class="toc_entry">Regular language</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">5</span> <span class="toc_entry">Classical Results</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">6</span> <span class="toc_entry">Complexity Classes</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">7</span> <span class="toc_entry">Theorems on Complexity of Turing Machines</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref"></span> <span class="toc_entry">Space complexity</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref"></span> <span class="toc_entry">Randomized</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref"></span> <span class="toc_entry">\(\textbf{PP=RP}\) consequences</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref"></span> <span class="toc_entry"> change probability in definition of PP </span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref"></span> <span class="toc_entry">CircuitSat \(\in \) DTIME\((2^n)\) consequences</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0015.html"><span class="toc_ref"></span> <span class="toc_entry">Prove/ Disprove</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">8</span> <span class="toc_entry">Determine if \(L\) in \(\mathcal{P}\)</span></a>
+ </li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000016">Prove/ Disprove</h1>
+<p><div class="claim*_thmwrapper theorem-style-plain" id="a0000000089">
+  <div class="claim*_thmheading">
+    <span class="claim*_thmcaption">
+    claim
+    </span>
+  </div>
+  <div class="claim*_thmcontent">
+  <p>For language L s.t L satisfies pumping lemma with pumping constant \(\ell \) , <br />\(L||L\) satisfies pumping lemma with pumping constant \(2\ell \)</p>
+
+  </div>
+</div> <div class="prop_thmwrapper theorem-style-plain" id="a0000000090">
+  <div class="prop_thmheading">
+    <span class="prop_thmcaption">
+    Proposition
+    </span>
+    <span class="prop_thmlabel">1</span>
+  </div>
+  <div class="prop_thmcontent">
+  <p>\(\mathcal{RE}\) is <b class="bfseries">not</b> closed under complement </p>
+
+  </div>
+</div> <div class="prop_thmwrapper theorem-style-plain" id="a0000000091">
+  <div class="prop_thmheading">
+    <span class="prop_thmcaption">
+    Proposition
+    </span>
+    <span class="prop_thmlabel">2</span>
+  </div>
+  <div class="prop_thmcontent">
+  <p>\(co\mathcal{RE}\) is closed under intersection.</p>
+
+  </div>
+</div> <div class="prop_thmwrapper theorem-style-plain" id="a0000000092">
+  <div class="prop_thmheading">
+    <span class="prop_thmcaption">
+    Proposition
+    </span>
+    <span class="prop_thmlabel">3</span>
+  </div>
+  <div class="prop_thmcontent">
+  <p>\(\mathcal{R}\) is closed under Kleene star.</p>
+
+  </div>
+</div> <div class="prop_thmwrapper theorem-style-plain" id="a0000000093">
+  <div class="prop_thmheading">
+    <span class="prop_thmcaption">
+    Proposition
+    </span>
+    <span class="prop_thmlabel">4</span>
+  </div>
+  <div class="prop_thmcontent">
+  <p>\(\mathcal{RE}\) is closed under Prefix, but \(\mathcal{R}\) is <b class="bfseries">not</b> closed under Prefix,</p>
+
+  </div>
+</div> </p>
+<ol class="enumerate">
+  <li><p><b class="bfseries">Prove:</b> If \(\mathcal{L}_1 \leq _m \mathcal{L}_2\) and \(\mathcal{L}_2 \leq _m \mathcal{L}_3, \) then \( \mathcal{L}_1 \leq _m \mathcal{L}_3. \) </p>
+</li>
+  <li><p><b class="bfseries">Disprove:</b> If \(\mathcal{L}_1 \leq _m \mathcal{L}_2\) and \(\mathcal{L}_2 \leq _m \mathcal{L}_1, \) then \( \mathcal{L}_1 = \mathcal{L}_2.\) </p>
+</li>
+  <li><p><b class="bfseries">Disprove:</b> If \(\mathcal{L}_1 \subseteq \mathcal{L}_2\) then \( \mathcal{L}_1 \leq _m \mathcal{L}_2.\) </p>
+</li>
+  <li><p><b class="bfseries">Disprove:</b> For every \(\mathcal{L}_1,\mathcal{L}_2\), then \(\mathcal{L}_1 \leq _m \mathcal{L}_2\) or </p>
+</li>
+  <li><p><b class="bfseries">Prove:</b> If \(\mathcal{L}\) is regular, then \(\mathcal{L} \leq _m HALT\) </p>
+</li>
+  <li><p><span class="ovalbox"><span class="ovalbox"> <span class="parbox" style="width: 446.26725pt">For every nontrivial \(L_1,L_2\in P, L_1\le L_2\) <b class="bfseries">TRUE</b></span></span></span> </p>
+</li>
+  <li><p><span class="ovalbox"><span class="ovalbox"> <span class="parbox" style="width: 446.26725pt">For every nontrivial \(L_1,L_2\in NP, L_1\le _P L_2\) <b class="bfseries">Equivalent to an Open Problem</b></span></span></span> </p>
+</li>
+  <li><p><span class="ovalbox"><span class="ovalbox"> <span class="parbox" style="width: 446.26725pt"> There exists a language in \( \mathcal{RE}\) that is complete w.r.t polynomial-time reductions. <b class="bfseries">TRUE</b>.</span></span></span> </p>
+</li>
+  <li><p><span class="ovalbox"><span class="ovalbox"> <span class="parbox" style="width: 446.26725pt"> If there exists a deterministic TM that decides SAT in time \(n^{O(\log n)}\) <br />Then every \(L\in NP\) is decidable by a deterministic TM in time \(n^{O(\log n)}\). <b class="bfseries">TRUE</b>.</span></span></span> </p>
+</li>
+</ol>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0014.html" title="CircuitSat \(\in \) DTIME\((2^n)\) consequences"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title=""><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0016.html" title="Determine if \(L\) in \(\mathcal{P}\)"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>
