@@ -35,5 +35,7 @@ To use the cheat sheet, simply download the PDF file or the LaTeX code, and refe
 ## Contributing
 We welcome contributions to the cheat sheet. If you have suggestions for improving the content, or if you find errors or omissions, please open an issue or submit a pull request.
 
+Several parts took from https://github.com/0x0f0f0f/computability-complexity-cheat-sheets
+
 ## License
 The cheat sheet is licensed under the MIT License. Feel free to use, modify, and distribute it as needed. See the LICENSE file for more information.
