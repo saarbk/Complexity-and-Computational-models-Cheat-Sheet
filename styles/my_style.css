@@ -2,15 +2,29 @@ span.equation_label {
     order: -1;
   }
   
-  h1, h2 {
-    color: #06c; 
-    font-style: italic;
-    font-family: serif;
-  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #404040; 
+    font-weight: 800;
+    line-height: 1.1;
+}
   
   div[class$="_thmheading"], div.proof_heading {
-    font-family: serif;
-  }
-  div[class$="_thmcontent"] {
-    border-left: .1rem solid black;
-  }
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.proof_wrapper {
+  background-color: #F8F8F8;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+  
+
+
+  
